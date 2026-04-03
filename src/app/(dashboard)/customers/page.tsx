@@ -109,7 +109,7 @@ export default function CustomersPage() {
                 <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center", s.color)}><Icon className="w-4 h-4" /></div>
                 <span className="text-xs text-slate-500 font-medium">{s.label}</span>
               </div>
-              <div className="font-mono-data text-lg lg:text-2xl font-bold text-slate-900">{s.value}</div>
+              <div className="font-mono-data text-xl lg:text-2xl font-bold text-slate-900">{s.value}</div>
             </div>
           );
         })}

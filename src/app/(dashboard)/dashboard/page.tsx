@@ -151,29 +151,29 @@ export default function DashboardPage() {
             <div
               key={kpi.title}
               className={cn(
-                "bg-white rounded-xl border border-slate-200 p-3 lg:p-5 animate-fade-in-up",
+                "bg-white rounded-xl border border-slate-200 p-4 lg:p-5 animate-fade-in-up",
                 `stagger-${i + 1}`
               )}
             >
-              <div className="flex items-center gap-2 lg:gap-3 mb-2 lg:mb-3">
+              <div className="flex items-center gap-3 mb-3">
                 <div
                   className={cn(
-                    "w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center",
+                    "w-9 h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center",
                     kpi.danger
                       ? "bg-red-100 text-red-600"
                       : "bg-emerald-100 text-emerald-600"
                   )}
                 >
-                  <Icon className="w-4 h-4 lg:w-5 lg:h-5" />
+                  <Icon className="w-5 h-5" />
                 </div>
-                <span className="text-xs lg:text-sm font-medium text-slate-500">
+                <span className="text-sm font-medium text-slate-500">
                   {kpi.title}
                 </span>
               </div>
-              <div className="font-mono-data text-xl lg:text-3xl font-bold text-slate-900">
+              <div className="font-mono-data text-2xl lg:text-3xl font-bold text-slate-900">
                 {kpi.value}
               </div>
-              <div className="flex items-center justify-between mt-1 lg:mt-2">
+              <div className="flex items-center justify-between mt-2">
                 <div
                   className={cn(
                     "flex items-center gap-1 text-xs font-medium",
