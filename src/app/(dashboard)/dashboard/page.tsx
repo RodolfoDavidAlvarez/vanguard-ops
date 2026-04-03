@@ -142,7 +142,7 @@ export default function DashboardPage() {
       </div>
 
       {/* KPI cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         {kpis.map((kpi, i) => {
           const Icon = kpi.icon;
           const isPositive = kpi.trend.value > 0;
@@ -195,7 +195,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Charts row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
         {/* Monthly Tonnage */}
         <div className="bg-white rounded-xl border border-slate-200 p-5 animate-fade-in-up stagger-5">
           <h3 className="text-sm font-semibold text-slate-900 mb-1">
@@ -313,7 +313,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Bottom row: Alerts + Timeline + Material breakdown */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
         {/* Active Alerts */}
         <div className="bg-white rounded-xl border border-slate-200 p-5 animate-fade-in-up stagger-7">
           <div className="flex items-center justify-between mb-4">

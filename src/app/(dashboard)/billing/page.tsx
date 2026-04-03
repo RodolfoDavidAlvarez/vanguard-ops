@@ -97,7 +97,7 @@ export default function BillingPage() {
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         {[
           { label: "Revenue MTD", value: formatCurrency(revenueMTD), icon: DollarSign, color: "bg-emerald-100 text-emerald-600" },
           { label: "Outstanding", value: formatCurrency(outstanding), icon: Clock, color: "bg-amber-100 text-amber-600" },

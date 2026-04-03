@@ -175,7 +175,7 @@ export default function DispatchPage() {
       </div>
 
       {/* Main 2-column layout */}
-      <div className="grid grid-cols-1 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 xl:grid-cols-5 gap-4 overflow-hidden">
         {/* Left: Kanban board (3 cols) */}
         <div className="xl:col-span-3 space-y-4">
           {/* Diverted row */}
@@ -203,7 +203,7 @@ export default function DispatchPage() {
           )}
 
           {/* Kanban columns */}
-          <div className="grid grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {statusColumns.map((col) => {
               const colLoads = columnLoads(col.key);
               return (

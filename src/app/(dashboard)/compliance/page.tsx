@@ -79,7 +79,7 @@ export default function CompliancePage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         {[
           { label: "Total Reports", value: totalReports, icon: FileText, color: "bg-slate-100 text-slate-600" },
           { label: "Due This Month", value: dueThisMonth, icon: Clock, color: "bg-amber-100 text-amber-600" },

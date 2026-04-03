@@ -95,7 +95,7 @@ export default function CustomersPage() {
       </div>
 
       {/* Summary stats */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         {[
           { label: "Total Customers", value: customers.length.toString(), icon: Users, color: "bg-emerald-100 text-emerald-600" },
           { label: "Total Tons YTD", value: totalTonsYTD.toLocaleString(undefined, { maximumFractionDigits: 1 }), icon: Scale, color: "bg-blue-100 text-blue-600" },

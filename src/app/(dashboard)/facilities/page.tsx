@@ -144,7 +144,7 @@ export default function FacilitiesPage() {
       </div>
 
       {/* Stats Row */}
-      <div className="px-8 pb-4 grid grid-cols-4 gap-4">
+      <div className="px-4 lg:px-8 pb-4 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-lg px-4 py-3">
           <div className="p-2 rounded-lg bg-slate-100">
             <Building2 className="w-5 h-5 text-slate-600" />
@@ -287,7 +287,7 @@ export default function FacilitiesPage() {
         </div>
 
         {/* Facility Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {facilities.map((f, i) => (
             <div
               key={f.id}
