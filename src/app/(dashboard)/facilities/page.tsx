@@ -127,9 +127,9 @@ export default function FacilitiesPage() {
   return (
     <div className="flex-1 flex flex-col min-h-0">
       {/* Header */}
-      <div className="px-8 pt-8 pb-4 flex items-end justify-between">
+      <div className="px-4 lg:px-8 pt-4 lg:pt-8 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-xl lg:text-2xl font-bold text-slate-900 tracking-tight">
             Facilities
           </h1>
           <p className="text-sm text-slate-500 mt-1">
@@ -192,7 +192,7 @@ export default function FacilitiesPage() {
       </div>
 
       {/* Main Content */}
-      <div className="px-8 pb-8 flex-1 min-h-0 overflow-auto space-y-6">
+      <div className="px-4 lg:px-8 pb-4 lg:pb-8 flex-1 min-h-0 overflow-auto space-y-6">
         {/* Map Section */}
         <div className="control-room-bg rounded-xl overflow-hidden relative" style={{ height: 300 }}>
           {/* LIVE indicator */}

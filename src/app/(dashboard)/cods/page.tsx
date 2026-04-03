@@ -50,9 +50,9 @@ export default function CODsPage() {
   return (
     <div className="flex-1 flex flex-col min-h-0">
       {/* Header */}
-      <div className="px-8 pt-8 pb-4 flex items-end justify-between">
+      <div className="px-4 lg:px-8 pt-4 lg:pt-8 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-xl lg:text-2xl font-bold text-slate-900 tracking-tight">
             Certificates of Destruction
           </h1>
           <p className="text-sm text-slate-500 mt-1">
@@ -90,7 +90,7 @@ export default function CODsPage() {
       </div>
 
       {/* Filters */}
-      <div className="px-8 pb-4 flex items-center gap-3">
+      <div className="px-4 lg:px-8 pb-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -128,7 +128,7 @@ export default function CODsPage() {
       </div>
 
       {/* Content */}
-      <div className="px-8 pb-8 flex-1 min-h-0 overflow-auto">
+      <div className="px-4 lg:px-8 pb-4 lg:pb-8 flex-1 min-h-0 overflow-auto">
         {viewMode === "grid" ? (
           /* ─── Grid View ─── */
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">

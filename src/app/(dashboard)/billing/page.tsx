@@ -88,7 +88,7 @@ export default function BillingPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Billing &amp; Revenue</h1>
+          <h1 className="text-xl lg:text-2xl font-bold text-slate-900">Billing &amp; Revenue</h1>
           <p className="text-sm text-slate-500 mt-0.5">{invoices.length} invoices</p>
         </div>
         <button className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors">
@@ -111,7 +111,7 @@ export default function BillingPage() {
                 <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center", s.color)}><Icon className="w-4 h-4" /></div>
                 <span className="text-xs text-slate-500 font-medium">{s.label}</span>
               </div>
-              <div className="font-mono-data text-2xl font-bold text-slate-900">{s.value}</div>
+              <div className="font-mono-data text-lg lg:text-2xl font-bold text-slate-900">{s.value}</div>
             </div>
           );
         })}

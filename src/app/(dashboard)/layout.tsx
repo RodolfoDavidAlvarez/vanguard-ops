@@ -57,7 +57,7 @@ export default function DashboardLayout({
                   href={item.href}
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
+                    "flex items-center gap-3 px-3 py-3 lg:py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
                     isActive
                       ? "bg-emerald-500/10 text-emerald-400"
                       : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
@@ -123,7 +123,7 @@ export default function DashboardLayout({
       >
         <button
           onClick={() => setSidebarOpen(false)}
-          className="absolute top-4 right-4 p-1 text-slate-400 hover:text-white"
+          className="absolute top-5 right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -138,9 +138,9 @@ export default function DashboardLayout({
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 -ml-1 rounded-lg hover:bg-slate-100 active:bg-slate-200 transition-colors"
             >
-              <Menu className="w-5 h-5 text-slate-600" />
+              <Menu className="w-6 h-6 text-slate-700" />
             </button>
             <div className="flex items-center gap-2 text-sm">
               <span className="text-slate-400 hidden sm:inline">Vanguard Ops</span>

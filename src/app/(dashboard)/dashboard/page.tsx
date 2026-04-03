@@ -132,7 +132,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       {/* Welcome header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">
+        <h1 className="text-xl lg:text-2xl font-bold text-slate-900">
           {getGreeting()}, Oscar
         </h1>
         <p className="text-sm text-slate-500 mt-1">
@@ -151,29 +151,29 @@ export default function DashboardPage() {
             <div
               key={kpi.title}
               className={cn(
-                "bg-white rounded-xl border border-slate-200 p-5 animate-fade-in-up",
+                "bg-white rounded-xl border border-slate-200 p-3 lg:p-5 animate-fade-in-up",
                 `stagger-${i + 1}`
               )}
             >
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-2 lg:gap-3 mb-2 lg:mb-3">
                 <div
                   className={cn(
-                    "w-10 h-10 rounded-lg flex items-center justify-center",
+                    "w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center",
                     kpi.danger
                       ? "bg-red-100 text-red-600"
                       : "bg-emerald-100 text-emerald-600"
                   )}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-4 h-4 lg:w-5 lg:h-5" />
                 </div>
-                <span className="text-sm font-medium text-slate-500">
+                <span className="text-xs lg:text-sm font-medium text-slate-500">
                   {kpi.title}
                 </span>
               </div>
-              <div className="font-mono-data text-3xl font-bold text-slate-900">
+              <div className="font-mono-data text-xl lg:text-3xl font-bold text-slate-900">
                 {kpi.value}
               </div>
-              <div className="flex items-center justify-between mt-2">
+              <div className="flex items-center justify-between mt-1 lg:mt-2">
                 <div
                   className={cn(
                     "flex items-center gap-1 text-xs font-medium",
@@ -187,7 +187,7 @@ export default function DashboardPage() {
                   <TrendIcon className="w-3 h-3" />
                   {Math.abs(kpi.trend.value)}% {kpi.trend.label}
                 </div>
-                <span className="text-xs text-slate-400">{kpi.subtitle}</span>
+                <span className="text-xs text-slate-400 hidden sm:inline">{kpi.subtitle}</span>
               </div>
             </div>
           );
@@ -204,7 +204,7 @@ export default function DashboardPage() {
           <p className="text-xs text-slate-400 mb-4">
             Tons processed across all facilities
           </p>
-          <div className="h-64">
+          <div className="h-48 lg:h-64">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={monthlyTonnageData}>
                 <defs>
@@ -261,7 +261,7 @@ export default function DashboardPage() {
           <p className="text-xs text-slate-400 mb-4">
             Current capacity usage by facility
           </p>
-          <div className="h-64">
+          <div className="h-48 lg:h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={facilityUtilizationData}

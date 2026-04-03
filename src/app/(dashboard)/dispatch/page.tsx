@@ -135,33 +135,34 @@ export default function DispatchPage() {
     <div className="space-y-4">
       {/* Diversion Alert Banner */}
       {!alertDismissed && divertedLoads.length > 0 && (
-        <div className="bg-red-600 text-white rounded-xl p-4 flex items-center gap-3 animate-fade-in-up">
+        <div className="bg-red-600 text-white rounded-xl p-3 lg:p-4 flex flex-wrap lg:flex-nowrap items-center gap-2 lg:gap-3 animate-fade-in-up">
           <AlertTriangle className="w-5 h-5 shrink-0" />
-          <div className="flex-1">
-            <span className="font-semibold">
+          <div className="flex-1 min-w-0">
+            <span className="font-semibold text-sm lg:text-base">
               {divertedLoads.length} loads diverted
             </span>
-            <span className="text-red-100 ml-2 text-sm">
-              — Holiday weekend storage charges at Henrico VA. Rerouted to
-              Brevard FL &amp; Space Coast.
+            <span className="text-red-100 ml-1 lg:ml-2 text-xs lg:text-sm">
+              — Holiday weekend storage charges at Henrico VA
             </span>
           </div>
-          <button className="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg transition-colors font-medium">
-            View Details
-          </button>
-          <button
-            onClick={() => setAlertDismissed(true)}
-            className="hover:bg-white/20 p-1 rounded transition-colors"
-          >
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-1 ml-auto">
+            <button className="text-xs lg:text-sm bg-white/20 hover:bg-white/30 px-2 lg:px-3 py-1 rounded-lg transition-colors font-medium whitespace-nowrap">
+              View Details
+            </button>
+            <button
+              onClick={() => setAlertDismissed(true)}
+              className="hover:bg-white/20 p-1.5 rounded transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       )}
 
       {/* Page header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Dispatch Board</h1>
+          <h1 className="text-xl lg:text-2xl font-bold text-slate-900">Dispatch Board</h1>
           <p className="text-sm text-slate-500 mt-0.5">
             Real-time load tracking &amp; facility dispatch
           </p>
@@ -190,7 +191,7 @@ export default function DispatchPage() {
                   {divertedLoads.length}
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {divertedLoads.map((l) => (
                   <LoadCardMini
                     key={l.id}
