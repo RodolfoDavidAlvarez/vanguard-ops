@@ -169,8 +169,44 @@ export default function LoadsPage() {
         </select>
       </div>
 
-      {/* Table */}
-      <div className="px-4 lg:px-8 pb-4 lg:pb-8 flex-1 min-h-0 overflow-auto">
+      {/* Mobile Card List */}
+      <div className="px-4 pb-4 flex-1 min-h-0 overflow-auto space-y-2 lg:hidden">
+        {filtered.map((load) => (
+          <div
+            key={load.id}
+            onClick={() => setSelectedLoad(load)}
+            className={cn(
+              "bg-white rounded-lg border border-slate-200 p-4 cursor-pointer transition-all active:bg-emerald-50 border-l-4",
+              load.status === "diverted" ? "border-l-red-500" :
+              load.status === "in_transit" ? "border-l-yellow-500" :
+              load.status === "completed" ? "border-l-emerald-500" :
+              load.status === "processing" ? "border-l-orange-500" :
+              load.status === "arrived" ? "border-l-indigo-500" :
+              "border-l-blue-500"
+            )}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-mono-data text-sm font-bold text-slate-900">{load.bol_number}</span>
+              <span className={cn("text-[11px] px-2 py-0.5 rounded-full font-semibold", getStatusColor(load.status))}>{STATUS_LABELS[load.status]}</span>
+            </div>
+            <div className="text-sm font-semibold text-slate-800">{load.customer_name}</div>
+            <div className="text-xs text-slate-500 mt-0.5">{load.material_type}</div>
+            <div className="flex items-center justify-between mt-3">
+              <div className="flex items-center gap-3">
+                <span className="font-mono-data text-base font-bold text-emerald-600">{load.net_weight_tons}t</span>
+                <span className="text-xs text-slate-400">{formatDate(load.date)}</span>
+              </div>
+              <span className="text-xs text-slate-400">{load.carrier_name}</span>
+            </div>
+          </div>
+        ))}
+        {filtered.length === 0 && (
+          <div className="text-center py-12 text-slate-400">No loads match your filters.</div>
+        )}
+      </div>
+
+      {/* Desktop Table */}
+      <div className="px-4 lg:px-8 pb-4 lg:pb-8 flex-1 min-h-0 overflow-auto hidden lg:block">
         <div className="border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
           <table className="w-full text-sm">
             <thead>

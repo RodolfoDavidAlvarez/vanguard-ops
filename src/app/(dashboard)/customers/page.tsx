@@ -126,8 +126,37 @@ export default function CustomersPage() {
         />
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+      {/* Mobile Card List */}
+      <div className="space-y-2 lg:hidden">
+        {filtered.map((c) => (
+          <div key={c.id} onClick={() => setSelectedCustomer(c)} className="bg-white rounded-lg border border-slate-200 p-4 cursor-pointer active:bg-emerald-50 transition-colors">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-sm font-semibold text-slate-900">{c.name}</span>
+              <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium uppercase", CUSTOMER_TYPE_COLORS[c.type])}>{CUSTOMER_TYPE_LABELS[c.type]}</span>
+            </div>
+            <div className="text-xs text-slate-500">{c.contact_name}</div>
+            <div className="flex items-center justify-between mt-3">
+              <div className="flex items-center gap-4">
+                <div>
+                  <div className="text-[10px] text-slate-400 uppercase">Tons YTD</div>
+                  <div className="font-mono-data text-sm font-bold text-slate-900">{c.total_tons_ytd.toLocaleString(undefined, { minimumFractionDigits: 1 })}</div>
+                </div>
+                <div>
+                  <div className="text-[10px] text-slate-400 uppercase">Loads</div>
+                  <div className="font-mono-data text-sm font-bold text-slate-700">{c.total_loads_ytd}</div>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-[10px] text-slate-400 uppercase">Outstanding</div>
+                <div className={cn("font-mono-data text-sm font-bold", c.outstanding_balance > 0 ? "text-red-600" : "text-emerald-600")}>{formatCurrency(c.outstanding_balance)}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Table */}
+      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden hidden lg:block">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -144,18 +173,9 @@ export default function CustomersPage() {
             </thead>
             <tbody>
               {filtered.map((c, i) => (
-                <tr
-                  key={c.id}
-                  onClick={() => setSelectedCustomer(c)}
-                  className={cn(
-                    "border-b border-slate-100 cursor-pointer transition-colors hover:bg-emerald-50",
-                    i % 2 === 0 ? "bg-white" : "bg-slate-50/50"
-                  )}
-                >
+                <tr key={c.id} onClick={() => setSelectedCustomer(c)} className={cn("border-b border-slate-100 cursor-pointer transition-colors hover:bg-emerald-50", i % 2 === 0 ? "bg-white" : "bg-slate-50/50")}>
                   <td className="py-3 px-4 font-medium text-slate-900">{c.name}</td>
-                  <td className="py-3 px-4">
-                    <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium uppercase", CUSTOMER_TYPE_COLORS[c.type])}>{CUSTOMER_TYPE_LABELS[c.type]}</span>
-                  </td>
+                  <td className="py-3 px-4"><span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium uppercase", CUSTOMER_TYPE_COLORS[c.type])}>{CUSTOMER_TYPE_LABELS[c.type]}</span></td>
                   <td className="py-3 px-4 text-slate-600">{c.contact_name}</td>
                   <td className="py-3 px-4 text-slate-500 text-xs">{c.contact_email}</td>
                   <td className="py-3 px-4 text-right font-mono-data font-medium text-slate-900">{c.total_tons_ytd.toLocaleString(undefined, { minimumFractionDigits: 1 })}</td>

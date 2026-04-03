@@ -155,8 +155,28 @@ export default function BillingPage() {
         </select>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+      {/* Mobile Card List */}
+      <div className="space-y-2 lg:hidden">
+        {filtered.map((inv) => (
+          <div key={inv.id} onClick={() => setSelectedInvoice(inv)} className={cn("bg-white rounded-lg border border-slate-200 p-4 cursor-pointer active:bg-emerald-50 transition-colors border-l-4", inv.status === "overdue" ? "border-l-red-500" : inv.status === "paid" ? "border-l-emerald-500" : inv.status === "draft" ? "border-l-slate-300" : "border-l-blue-500")}>
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-mono-data text-sm font-bold text-slate-900">{inv.invoice_number}</span>
+              <span className={cn("text-[11px] px-2 py-0.5 rounded-full font-semibold", getStatusColor(inv.status))}>{STATUS_LABELS[inv.status]}</span>
+            </div>
+            <div className="text-sm font-medium text-slate-800">{inv.customer_name}</div>
+            <div className="flex items-center justify-between mt-3">
+              <span className="font-mono-data text-lg font-bold text-slate-900">{formatCurrency(inv.total)}</span>
+              <div className="text-right">
+                <div className="text-[10px] text-slate-400">Due {formatDate(inv.due_date)}</div>
+                {inv.payment_date && <div className="text-[10px] text-emerald-600">Paid {formatDate(inv.payment_date)}</div>}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Table */}
+      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden hidden lg:block">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -172,21 +192,12 @@ export default function BillingPage() {
             </thead>
             <tbody>
               {filtered.map((inv, i) => (
-                <tr
-                  key={inv.id}
-                  onClick={() => setSelectedInvoice(inv)}
-                  className={cn(
-                    "border-b border-slate-100 cursor-pointer transition-colors hover:bg-emerald-50",
-                    inv.status === "overdue" ? "bg-red-50/50" : i % 2 === 0 ? "bg-white" : "bg-slate-50/50"
-                  )}
-                >
+                <tr key={inv.id} onClick={() => setSelectedInvoice(inv)} className={cn("border-b border-slate-100 cursor-pointer transition-colors hover:bg-emerald-50", inv.status === "overdue" ? "bg-red-50/50" : i % 2 === 0 ? "bg-white" : "bg-slate-50/50")}>
                   <td className="py-3 px-4 font-mono-data font-medium text-slate-900">{inv.invoice_number}</td>
                   <td className="py-3 px-4 text-slate-600">{formatDate(inv.date)}</td>
                   <td className="py-3 px-4 font-medium text-slate-900">{inv.customer_name}</td>
                   <td className="py-3 px-4 text-right font-mono-data font-bold text-slate-900">{formatCurrency(inv.total)}</td>
-                  <td className="py-3 px-4 text-center">
-                    <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium uppercase", getStatusColor(inv.status))}>{STATUS_LABELS[inv.status]}</span>
-                  </td>
+                  <td className="py-3 px-4 text-center"><span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium uppercase", getStatusColor(inv.status))}>{STATUS_LABELS[inv.status]}</span></td>
                   <td className="py-3 px-4 font-mono-data text-slate-600">{formatDate(inv.due_date)}</td>
                   <td className="py-3 px-4 text-slate-500">{inv.payment_date ? formatDate(inv.payment_date) : "—"}</td>
                 </tr>

@@ -124,7 +124,7 @@ export default function CompliancePage() {
       </div>
 
       {/* Filters */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
         <select value={facilityFilter} onChange={(e) => setFacilityFilter(e.target.value)} className="bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
           <option value="all">All Facilities</option>
           {facilityNames.map((f) => <option key={f} value={f}>{f.split("—")[0].trim()}</option>)}
@@ -138,8 +138,28 @@ export default function CompliancePage() {
         </select>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+      {/* Mobile Card List */}
+      <div className="space-y-2 lg:hidden">
+        {filtered.map((r) => (
+          <div key={r.id} className={cn("bg-white rounded-lg border border-slate-200 p-4 border-l-4", r.status === "approved" ? "border-l-emerald-500" : r.status === "submitted" ? "border-l-indigo-500" : r.status === "in_progress" ? "border-l-blue-500" : "border-l-amber-400")}>
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-sm font-semibold text-slate-900">{r.facility_name.split("—")[0].trim()}</span>
+              <span className={cn("text-[11px] px-2 py-0.5 rounded-full font-semibold", getStatusColor(r.status))}>{STATUS_LABELS[r.status]}</span>
+            </div>
+            <div className="text-xs text-slate-600">{REPORT_TYPE_LABELS[r.report_type]}</div>
+            <div className="flex items-center justify-between mt-3">
+              <span className="font-mono-data text-xs text-slate-500">{r.period}</span>
+              <div className="text-right">
+                <span className={cn("font-mono-data text-sm font-medium", isDueSoon(r.due_date) && r.status !== "submitted" && r.status !== "approved" ? "text-amber-700" : "text-slate-600")}>Due {formatDate(r.due_date)}</span>
+              </div>
+            </div>
+            {r.submitted_date && <div className="text-xs text-emerald-600 mt-1">Submitted {formatDate(r.submitted_date)}</div>}
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Table */}
+      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden hidden lg:block">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -154,20 +174,12 @@ export default function CompliancePage() {
             </thead>
             <tbody>
               {filtered.map((r, i) => (
-                <tr
-                  key={r.id}
-                  className={cn(
-                    "border-b border-slate-100 transition-colors hover:bg-emerald-50",
-                    isDueSoon(r.due_date) && r.status !== "submitted" && r.status !== "approved" ? "bg-amber-50/50" : i % 2 === 0 ? "bg-white" : "bg-slate-50/50"
-                  )}
-                >
+                <tr key={r.id} className={cn("border-b border-slate-100 transition-colors hover:bg-emerald-50", isDueSoon(r.due_date) && r.status !== "submitted" && r.status !== "approved" ? "bg-amber-50/50" : i % 2 === 0 ? "bg-white" : "bg-slate-50/50")}>
                   <td className="py-3 px-4 font-medium text-slate-900">{r.facility_name.split("—")[0].trim()}</td>
                   <td className="py-3 px-4 text-slate-600">{REPORT_TYPE_LABELS[r.report_type]}</td>
                   <td className="py-3 px-4 text-slate-500 font-mono-data">{r.period}</td>
                   <td className={cn("py-3 px-4 font-mono-data", isDueSoon(r.due_date) && r.status !== "submitted" && r.status !== "approved" ? "text-amber-700 font-semibold" : "text-slate-600")}>{formatDate(r.due_date)}</td>
-                  <td className="py-3 px-4 text-center">
-                    <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium uppercase", getStatusColor(r.status))}>{STATUS_LABELS[r.status]}</span>
-                  </td>
+                  <td className="py-3 px-4 text-center"><span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium uppercase", getStatusColor(r.status))}>{STATUS_LABELS[r.status]}</span></td>
                   <td className="py-3 px-4 text-slate-500">{r.submitted_date ? formatDate(r.submitted_date) : "—"}</td>
                 </tr>
               ))}
